@@ -1,4 +1,5 @@
 require 'perpetuity/postgres/text_value'
+require 'time'
 
 module Perpetuity
   class Postgres
