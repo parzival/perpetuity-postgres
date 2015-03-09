@@ -25,7 +25,7 @@ module Perpetuity
                  when Hash, JSONHash
                    JSONHash.new(value.to_hash, :inner)
                  when Array, JSONArray
-                   JSONArray.new(value.to_a, :inner)
+                   JSONArray.new(value.to_a)
                  when nil
                    NullValue.new
                  when true, false

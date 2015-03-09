@@ -28,6 +28,8 @@ module Perpetuity
 
           string << if [String, Class].include? value.class
             JSONStringValue.new(value.to_s)
+          elsif [Array, JSONArray].include? value.class
+            JSONArray.new(value, :inner).to_s
           elsif [true, false].include? value
             value.to_s
           elsif value.nil?

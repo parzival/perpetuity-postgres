@@ -34,7 +34,7 @@ module Perpetuity
       end
 
       it 'converts arrays' do
-        expect(SQLValue.new([1, 'foo', { a: 1 }])).to be == %q([1,"foo",{"a":1}])
+        expect(SQLValue.new([1, 'foo', { a: 1 }])).to be == %q('[1,"foo",{"a":1}]')
       end
 
       it 'converts JSONHashes' do
@@ -43,7 +43,7 @@ module Perpetuity
 
       it 'converts JSONArrays' do
         expect(SQLValue.new(JSONArray.new([1, 'foo', [1, 'foo']]))).to be ==
-          %q([1,"foo",[1,"foo"]])
+          %q('[1,"foo",[1,"foo"]]')
       end
 
       it 'converts Time objects' do

@@ -23,11 +23,14 @@ module Perpetuity
 
       def serialize_elements
         @value.map do |element|
-          if element.is_a? String
+          case element
+          when String
             JSONStringValue.new(element)
+          when Array
+            JSONArray.new(element, :inner)
           else
             SQLValue.new(element)
-          end
+          end  
         end.join(',')
       end
 
