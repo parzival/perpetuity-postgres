@@ -2,7 +2,8 @@ module Perpetuity
   class Postgres
     class TextValue
       def initialize value
-        @value = value.to_s.gsub("'") { "''" }
+        #val = value.to_s.gsub("'") { "''" }
+        @value = Connection.escape_string(value.to_s)
       end
 
       def to_s

@@ -2,7 +2,8 @@ module Perpetuity
   class Postgres
     class JSONStringValue
       def initialize value
-        @value = value.to_s.gsub('"') { '\\"' }
+        val = value.to_s.gsub('"') { '\\"' }
+        @value = Connection.escape_string(val)
       end
 
       def to_s

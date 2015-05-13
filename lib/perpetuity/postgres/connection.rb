@@ -4,6 +4,10 @@ module Perpetuity
   class Postgres
     class Connection
       attr_reader :options
+      
+      def self.escape_string(str)
+        PG::Connection.escape_string(str)  # PG docs say to avoid the class method and use the Connection instance method... working around it would require changing how queries are formed.
+      end
 
       def initialize options={}
         @options = sanitize_options(options)
