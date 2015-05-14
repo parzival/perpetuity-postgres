@@ -48,7 +48,6 @@ module Perpetuity
 
       def execute sql
         pg_connection.exec sql
-        exit 1 # DBG
       rescue PG::AdminShutdown, PG::UnableToSend => e
         # server closed the connection unexpectedly
         # Try to reconnect 3 times in case it's just a server restart.

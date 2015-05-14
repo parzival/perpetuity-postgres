@@ -15,6 +15,18 @@ module Perpetuity
         expect(JSONStringValue.new('Anakin "Darth Vader" Skywalker').to_s).to be ==
           '"Anakin \\"Darth Vader\\" Skywalker"'
       end
+      
+      it 'escapes horizontal tabs' do
+        expect(TextValue.new("Jamie:\t author").to_s).to be == "'Jamie:\\\t author'"
+      end
+      
+      it 'escapes newlines' do
+        expect(TextValue.new("Anakin\nLuke").to_s).to be == "'Anakin\\\nLuke'"
+      end
+      
+      it 'escapes carriage returns' do
+        expect(TextValue.new("Leia\rHan").to_s).to be == "'Leia\\\rHan'"
+      end
     end
   end
 end

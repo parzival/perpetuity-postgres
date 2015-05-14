@@ -7,7 +7,6 @@ module Perpetuity
       def initialize value, position=:outer
         @value = value
         @position = position
-        exit 1 # DBG
       end
 
       def to_s
@@ -23,7 +22,6 @@ module Perpetuity
       end
 
       def serialize_elements
-        raise ArgumentError # DBG
         @value.map do |element|
           case element
           when String
