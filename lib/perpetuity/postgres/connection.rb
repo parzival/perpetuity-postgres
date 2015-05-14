@@ -5,8 +5,9 @@ module Perpetuity
     class Connection
       attr_reader :options
       
-      def self.escape_string(str)
-        PG::Connection.escape_string(str)  # PG docs say to avoid the class method and use the Connection instance method... working around it would require changing how queries are formed.
+      def self.sanitize_string(str)
+        safe = PG::Connection.escape_string(str)  # PG docs say to avoid the class method and use the Connection instance method... working around it would require changing how queries are formed.
+        safe.gsub(/[\t\n\r\v]/) {|s| '\\' + s}  # Add escapes for db
       end
 
       def initialize options={}
@@ -47,6 +48,7 @@ module Perpetuity
 
       def execute sql
         pg_connection.exec sql
+        exit 1 # DBG
       rescue PG::AdminShutdown, PG::UnableToSend => e
         # server closed the connection unexpectedly
         # Try to reconnect 3 times in case it's just a server restart.

@@ -3,7 +3,9 @@ module Perpetuity
     class JSONStringValue
       def initialize value
         val = value.to_s.gsub('"') { '\\"' }
-        @value = Connection.escape_string(val)
+        #@value = Connection.sanitize_string(val)
+        #$stderr.puts @value # DBG
+        @value = 'oink'
       end
 
       def to_s
