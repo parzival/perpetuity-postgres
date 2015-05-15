@@ -7,7 +7,7 @@ module Perpetuity
       
       def self.sanitize_string(str)
         safe = PG::Connection.escape_string(str)  # PG docs say to avoid the class method and use the Connection instance method... working around it would require changing how queries are formed.
-        safe.gsub(/[\t\n\r\v]/) {|s| '\\' + s}  # Add escapes for db
+        safe.gsub(/[\n\r\v]/) {|s| '\\' + s}  # Add escapes for db
       end
 
       def initialize options={}
