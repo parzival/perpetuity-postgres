@@ -7,7 +7,8 @@ module Perpetuity
       end
 
       def to_s
-        %Q{"#{@value}"}
+        v = Connection.present_string(@value)
+        %Q{"#{v}"}
       end
 
       def to_str
