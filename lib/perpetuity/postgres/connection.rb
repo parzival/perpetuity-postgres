@@ -6,8 +6,8 @@ module Perpetuity
       attr_reader :options
       
       def self.sanitize_string(str)
-        safe = PG::Connection.escape_string(str)  # PG docs say to avoid the class method and use the Connection instance method... working around it would require changing how queries are formed.
-        safe.gsub(/[\n\r\v]/) {|s| '\\' + s}  # Add escapes for db
+        safe = PG::Connection.escape_string(str)  # PG docs say to avoid the class method and use the Connection instance method... working around this might require changing how queries are formed.
+        safe.gsub(/[\t\n\r\v]/) {|s| "\\u%04x" % s.ord}  # These are Unicode points, and only valid generically because the numbers are in the ASCII range
       end
 
       def initialize options={}
