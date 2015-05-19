@@ -17,15 +17,15 @@ module Perpetuity
       end
       
       it 'escapes horizontal tabs' do
-        expect(TextValue.new("Jamie:\t author").to_s).to be == "'Jamie:\\\t author'"
+        expect(JSONStringValue.new("Jamie:\t author").to_s).to be == '"Jamie:\u0009 author"'
       end
       
       it 'escapes newlines' do
-        expect(TextValue.new("Anakin\nLuke").to_s).to be == "'Anakin\\\nLuke'"
+        expect(JSONStringValue.new("Anakin\nLuke").to_s).to be == '"Anakin\u000aLuke"'
       end
       
       it 'escapes carriage returns' do
-        expect(TextValue.new("Leia\rHan").to_s).to be == "'Leia\\\rHan'"
+        expect(JSONStringValue.new("Leia\rHan").to_s).to be == '"Leia\u000dHan"'
       end
     end
   end

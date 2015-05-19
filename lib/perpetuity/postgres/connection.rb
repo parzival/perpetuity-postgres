@@ -11,9 +11,9 @@ module Perpetuity
         safe.gsub(/[\t\n\r\v]/) {|s| "\\u%04x" % s.ord}  # These are Unicode points, and only valid generically because the numbers are in the ASCII range
       end
       
-      # Retrieve a string properly
-      def self.present_string(str)
-        str.encode('utf-8')
+      # Retrieve an escaped string
+      def self.unsanitize_string(str)
+        str.gsub(/\\u(\h{4})/) {|s| [$1.hex].pack("U")}
       end
 
       def initialize options={}

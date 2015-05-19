@@ -6,7 +6,7 @@ module Perpetuity
       end
 
       def to_s
-        "'#{Connection.present_string(@value)}'"
+        "'#{@value}'"
       end
     end
   end

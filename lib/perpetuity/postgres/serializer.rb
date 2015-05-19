@@ -66,6 +66,8 @@ module Perpetuity
               value = TimestampValue.from_sql(value).to_time
             elsif [TrueClass, FalseClass].include? attribute.type
               value = value.downcase.start_with? 't'
+            elsif attribute.type == String
+              value = Connection.unsanitize_string(value)
             end
           end
 
