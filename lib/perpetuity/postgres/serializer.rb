@@ -128,6 +128,10 @@ module Perpetuity
         array = value.map do |item|
           if SERIALIZABLE_CLASSES.include? item.class
             item
+          elsif item.is_a? Array
+            item  # JSONArray will serialize, but only for natively serializable items
+          elsif item.is_a? Hash
+            item
           elsif object.embedded?
             serialize_with_foreign_mapper item
           else

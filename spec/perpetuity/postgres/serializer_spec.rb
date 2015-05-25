@@ -89,6 +89,10 @@ module Perpetuity
         it 'serializes an array as JSON' do
           expect(serializer.serialize_attribute([1, 'foo'])).to be == %q{'[1,"foo"]'}
         end
+        
+        it 'serializes a nested array as JSON' do
+          expect(serializer.serialize_attribute([1, 'foo', [2, 'bar']])).to be == %q{'[1,"foo",[2,"bar"]]'}
+        end
 
         it 'serializes a hash as JSON' do
           expect(serializer.serialize_attribute(a: 1, foo: ['bar'])).to be == %q{'{"a":1,"foo":["bar"]}'}
