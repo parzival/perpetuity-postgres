@@ -4,7 +4,6 @@ module Perpetuity
       def initialize value
         val = value.to_s
                     .gsub('"') { '\\"' }
-                    .gsub("'") { "''" }
         @value = Connection.sanitize_string(val)
       end
 

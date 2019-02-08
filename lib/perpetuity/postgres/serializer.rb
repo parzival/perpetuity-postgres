@@ -12,7 +12,7 @@ module Perpetuity
     class Serializer
       include DataInjectable
 
-      SERIALIZABLE_CLASSES = Set[Fixnum, Float, String, Time, Date, TrueClass, FalseClass, NilClass]
+      SERIALIZABLE_CLASSES = Set[Integer, Float, String, Time, Date, TrueClass, FalseClass, NilClass]
       attr_reader :mapper, :mapper_registry
 
       def initialize mapper
@@ -60,7 +60,7 @@ module Perpetuity
             value = unserialize_foreign_object value
           end
           if attribute
-            if [Fixnum, Bignum, Integer].include? attribute.type
+            if attribute.type == Integer
               value = value.to_i
             elsif attribute.type == Time
               value = TimestampValue.from_sql(value).to_time

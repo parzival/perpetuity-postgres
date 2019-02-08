@@ -54,11 +54,9 @@ module Perpetuity
 
         describe 'integers' do
           let(:page_views) { Attribute.new('page_views', Integer, default: 0) }
-          let(:public_key) { Attribute.new('public_key', Bignum) }
 
           it 'generates the proper SQL' do
             expect(page_views.sql_declaration).to be == 'page_views BIGINT DEFAULT 0'
-            expect(public_key.sql_declaration).to be == 'public_key NUMERIC'
           end
         end
 

@@ -256,7 +256,7 @@ module Perpetuity
     def cast_id id, id_attribute
       return id if id_attribute.nil?
 
-      if [Bignum, Fixnum, Integer].include? id_attribute.type
+      if id_attribute.type == Integer
         id.to_i
       else
         id

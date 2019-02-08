@@ -20,7 +20,7 @@ module Perpetuity
                    TimestampValue.new(value)
                  when Date
                    DateValue.new(value)
-                 when Fixnum, Float
+                 when Integer, Float
                    NumericValue.new(value)
                  when Hash, JSONHash
                    JSONHash.new(value.to_hash, :inner)

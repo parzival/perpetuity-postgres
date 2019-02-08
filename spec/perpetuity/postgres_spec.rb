@@ -191,7 +191,7 @@ module Perpetuity
         let(:data) { [Postgres::SerializedData.new([:n], [1])] }
 
         before do
-          attributes << Attribute.new(:n, Fixnum)
+          attributes << Attribute.new(:n, Integer)
         end
 
         it 'increments a value for a record' do

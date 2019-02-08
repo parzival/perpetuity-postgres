@@ -12,8 +12,6 @@ module Perpetuity
         SQL_TYPE_MAP = {
           String => 'TEXT',
           Integer => 'BIGINT',
-          Fixnum =>  'BIGINT',
-          Bignum =>     'NUMERIC',
           BigDecimal => 'NUMERIC',
           Float => 'FLOAT',
           UUID => 'UUID',
