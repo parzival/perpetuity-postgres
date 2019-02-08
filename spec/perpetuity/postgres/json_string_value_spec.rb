@@ -26,6 +26,11 @@ module Perpetuity
       
       it 'escapes carriage returns' do
         expect(JSONStringValue.new("Leia\rHan").to_s).to be == '"Leia\u000dHan"'
+
+      it 'escapes single quotes' do
+        expect(JSONStringValue.new(%{Man it's a hot one}).to_s).to be ==
+          %{"Man it''s a hot one"}
+
       end
     end
   end
